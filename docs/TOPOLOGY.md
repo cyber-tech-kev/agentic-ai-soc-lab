@@ -1,7 +1,7 @@
 # Topology & Architectural Constraints
 
 Ghost Lab runs on a single Proxmox host with three isolated network segments. The
-addresses below are the **reference build** — RFC1918 space, documentation rather than
+addresses below are the **reference build** RFC1918 space, documentation rather than
 secrets. Adapt them to your own lab (see `CUSTOMIZING-AGENTS.md` and `setup.sh`).
 
 ## Segments
