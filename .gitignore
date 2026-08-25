@@ -1,0 +1,39 @@
+# ── Secrets & environment ──────────────────────────────
+.env
+*.env
+!.env.example
+
+# ── Databases & runtime data ───────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Agent runtime output (keep EXAMPLE-* only) ─────────
+soc-agents/blue-team/incidents/*
+!soc-agents/blue-team/incidents/EXAMPLE-*
+soc-agents/purple-team/hunts/*
+!soc-agents/purple-team/hunts/EXAMPLE-*
+soc-agents/green-team/rule-changes.md
+
+# ── Certs & keys ───────────────────────────────────────
+*.pem
+*.key
+*.crt
+wazuh-certs/
+
+# ── Python ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ── Editor / OS cruft ──────────────────────────────────
+*.bak
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/
+BRIEFING.md

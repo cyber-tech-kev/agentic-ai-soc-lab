@@ -1,0 +1,43 @@
+# Ghost Lab SOC — agent unit template
+#
+# Templated unit: one file serves all four agents via the instance name.
+# Install and enable per-agent, e.g.:
+#
+#   sudo cp systemd/soc-agent@.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now soc-agent@red-team
+#   sudo systemctl enable --now soc-agent@blue-team
+#   sudo systemctl enable --now soc-agent@green-team
+#   sudo systemctl enable --now soc-agent@purple-team
+#
+# The %i instance name must match the agent directory under soc-agents/.
+#
+# EDIT THESE for your install:
+#   - WorkingDirectory / ExecStart : set to where you cloned the repo
+#   - User / Group                 : the non-root account the agents run as
+#   - EnvironmentFile              : path to your .env
+
+[Unit]
+Description=Ghost Lab SOC %i agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=socagent
+Group=socagent
+
+WorkingDirectory=/opt/ghost-lab/soc-agents
+EnvironmentFile=/opt/ghost-lab/soc-agents/.env
+ExecStart=/usr/bin/python3 /opt/ghost-lab/soc-agents/%i/agent.py
+
+Restart=on-failure
+RestartSec=10
+
+# Basic hardening. Loosen only if an agent genuinely needs more.
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target
