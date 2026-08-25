@@ -10,7 +10,7 @@ This is a learning and portfolio project, packaged as a template you can clone a
 
 **This project runs autonomous agents with unrestricted shell access. Acknowledge these risks before pointing it at anything.**
 
-###Prompt injection is an identified, open, and unmitigated risk
+### Prompt injection is an identified, open, and unmitigated risk
 
 Te agnets invoke claude with the '--dangerously-skip-permission', this gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies, User-Agent stirngs, filenames, and command lines flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet).
 
