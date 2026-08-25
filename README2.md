@@ -105,5 +105,4 @@ This is an evolving lab project. Known gaps and planned work:
 - Cross-segment attack simulation (Kali → Windows endpoint)
 - MISP and Zeek integration
 
-Contributions and forks welcome. If you build on this, the security section above is the
-part that matters most — don't drop it.
+Forks are welcome. 
