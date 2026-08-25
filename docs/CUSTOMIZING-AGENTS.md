@@ -1,7 +1,7 @@
 # Customizing the Agents
 
 The four agents are driven by natural-language prompts. Some of that prompt text is
-**lab-specific** and assumes the reference build. Swapping an IP is not enough — you may
+**lab-specific** and assumes the reference build. Swapping an IP is not enough, you may
 need to rewrite the instructions themselves.
 
 ## Where agent behavior is defined
@@ -12,7 +12,7 @@ Each agent lives in `soc-agents/<team>/` with two files:
   Mission lists and guardrails live here as Python string literals.
 - **`context.md`** — the agent's standing mission/guardrail prompt in prose.
 
-Configuration (endpoints, credentials, paths) is read from `.env` at runtime — you do not
+Configuration (endpoints, credentials, paths) is read from `.env` at runtime and you do not
 edit code to change those. See `.env.example`.
 
 ## What `setup.sh` handles for you
