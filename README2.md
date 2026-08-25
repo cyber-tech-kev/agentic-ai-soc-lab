@@ -1,11 +1,11 @@
 # Agentic AI Powered SOC
 ---
-An agentic, AI powered homelab Security Oeprations Center featuring four autonomous agents- Red, Blue, Green, Purple. Each drive Claude via the CLI and cordinate through a small custom Flask/SQLite messaging platform running against an intentionally vulnerable lab network.
+An agentic, AI powered homelab Security Oprations Center featuring four autonomous agents- Red, Blue, Green, Purple. Each drive Claude via the CLI and coordinate through a small custom Flask/SQLite messaging platform running against an intentionally vulnerable lab network.
 
 This is a learning and portfolio project, packaged as a template you can clone and adapt to your own homelab. This is NOT production security tooling.
 
 This Lab consists of the following services:
-Claude as the LLM, Proxmox environment, PFsense VM, Suricata (IDS), Wazuh (SIEM/EDR), Kali VM, Windows VM, Metasploitable 2 VM, self hosted messasging platform.
+Claude as the LLM, Proxmox environment, PFsense VM, Suricata (IDS), Wazuh (SIEM/EDR), Kali VM, Windows VM, Metasploitable 2 VM, self hosted messaging platform.
 
 ---
 
@@ -15,15 +15,15 @@ Claude as the LLM, Proxmox environment, PFsense VM, Suricata (IDS), Wazuh (SIEM/
 
 ### Prompt injection is an identified, open, and unmitigated risk
 
-Te agnets invoke claude with the '--dangerously-skip-permission', this gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies, User-Agent stirngs, filenames, and command lines flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet).
+The agnets invoke claude with the '--dangerously-skip-permission', this gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies, User-Agent strings, filenames, and command lines flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet).
 
-This is a known architectural weakness in the design annd is **not yet mitigated**.
+This is a known architectural weakness in the design and is **not yet mitigated**.
 Do not run this against real or untrusted traffic. Treat it as a lab exercise in an isolated, segmented network. If you wish to extend it, adding external input validation should be your first concern. (so you aren't relying on the model to police itself)
 
 ### Other Essentials
 
 **Runs as intentionally vulnerable VM** (Metasploitable 2) on purpose. Keep the lab network isolated. 
-**Secretes live only in '.env'**, which is gitignored. The Discord webhook URLs are bearer creds. Anyone holding them can post to the server. Never commit hem and rotate immediately if one leaks.
+**Secrets live only in '.env'**, which is gitignored. The Discord webhook URLs are bearer creds. Anyone holding them can post to the server. Never commit them and rotate immediately if one leaks.
 **Agents run as a non-root user** by design. I suggest keeping it that way.
 
 ---
