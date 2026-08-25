@@ -4,6 +4,9 @@ An agentic, AI powered homelab Security Oeprations Center featuring four autonom
 
 This is a learning and portfolio project, packaged as a template you can clone and adapt to your own homelab. This is NOT production security tooling.
 
+This Lab consists of the following services:
+Claude as the LLM, Proxmox environment, PFsense VM, Suricata (IDS), Wazuh (SIEM/EDR), Kali VM, Windows VM, Metasploitable 2 VM, self hosted messasging platform.
+
 ---
 
 ## Security- Read Before Deploying!
