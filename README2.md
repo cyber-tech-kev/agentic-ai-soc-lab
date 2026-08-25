@@ -17,7 +17,7 @@ Claude as the LLM, Proxmox environment, pfSense VM, Suricata (IDS), Wazuh (SIEM/
  
 The agents invoke Claude with \`--dangerously-skip-permissions\`, which gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies — User-Agent strings, filenames, and command lines — flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet.)
  
-This is a known architectural weakness in the design and is **not yet mitigated**. Do not run this against real or untrusted traffic. Treat it as a lab exercise in an isolated, segmented network. If you wish to extend it, adding external input validation should be your first concern — so you aren't relying on the model to police itself.
+This is a known architectural weakness in the design and is **not yet mitigated**. Do not run this against real or untrusted traffic. Treat it as a lab exercise in an isolated, segmented network. If you wish to extend it, adding external input validation should be your first concern so you aren't relying on the model to police itself.
  
 ### Other Essentials
  
