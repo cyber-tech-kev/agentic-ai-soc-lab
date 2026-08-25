@@ -100,10 +100,10 @@ traffic is detectable — are in [docs/TOPOLOGY.md](docs/TOPOLOGY.md).
  
 This is an evolving lab project. Known gaps and planned work:
  
-- **Prompt-injection defense** (external validation) — highest priority, see above
+- **Prompt-injection defense** (external validation) the highest priority, see above
 - Durable agent memory to avoid re-triaging known-benign alerts
 - Deployment gates for the Green agent's rule-staging pipeline
-- Cross-segment attack simulation (Kali → Windows endpoint)
+- Cross-segment attack simulation (Kali > Windows endpoint)
 - MISP and Zeek integration
 Forks are welcome.
  
