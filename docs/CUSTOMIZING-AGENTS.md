@@ -46,7 +46,7 @@ reference it.
 
 ## A note on prompt quality
 
-The reference prompts are arguably the most valuable part of this repo — they're a worked
+The reference prompts are arguably the most valuable part of this repo, they're a worked
 example of how to instruct an autonomous security agent with clear scope and guardrails.
 Read them before rewriting. Keep the structure (role, authorized scope, explicit
 prohibitions, output format) even as you change the specifics.
