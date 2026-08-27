@@ -4,10 +4,28 @@
 from flask import Flask, request, jsonify, render_template
 import sqlite3
 from datetime import datetime
+import os
+from pathlib import Path
 
 # Initialize Flask app and define path to SQLite database file
 app = Flask(__name__)
-DB_PATH = '/root/soc-messaging/messages.db'
+# ── Config ────────────────────────────────────────────────
+# Values come from the environment (see .env.example).
+# systemd injects them via EnvironmentFile=; for manual runs,
+# export them or use `set -a; . .env; set +a`.
+
+# Where the SQLite DB lives. Defaults to messages.db beside this file.
+DB_PATH = os.environ.get(
+    'SOC_DB_PATH',
+    str(Path(__file__).resolve().parent / 'messages.db')
+)
+
+# Interface the server binds to.
+# 127.0.0.1  = local only (safe default)
+# 100.x.x.x  = a Tailscale address, if you view the dashboard remotely
+# 0.0.0.0    = every interface, including your lab segments. Don't.
+BIND_HOST = os.environ.get('SOC_BIND_HOST', '127.0.0.1')
+BIND_PORT = int(os.environ.get('SOC_BIND_PORT', '5000'))
 
 @app.route('/')
 def dashboard():
@@ -107,4 +125,4 @@ initialize_database()
 
 # Start the Flask server
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host=BIND_HOST, port=BIND_PORT, debug=False)
