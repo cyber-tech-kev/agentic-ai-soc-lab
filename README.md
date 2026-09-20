@@ -101,8 +101,8 @@ adapt them.
 
 Three isolated segments on one Proxmox host: home (`10.0.0.0/24`), red team
 (`192.168.100.0/24`), and SOC (`192.168.200.0/24`). Full host table and the non-obvious
-build constraints — pfSense interface quirks, Wazuh indexer binding, why only cross-segment
-traffic is detectable — are in [docs/TOPOLOGY.md](docs/TOPOLOGY.md).
+build constraints, pfSense interface quirks, Wazuh indexer binding, why only cross-segment
+traffic is detectable are in [docs/TOPOLOGY.md](docs/TOPOLOGY.md).
 
 ---
 
