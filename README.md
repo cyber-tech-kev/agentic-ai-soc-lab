@@ -15,13 +15,13 @@ Claude as the LLM, Proxmox environment, pfSense VM, Suricata (IDS), Wazuh (SIEM/
 
 ### Prompt injection is an identified, open, and unmitigated risk
 
-The agents invoke Claude with `--dangerously-skip-permissions`, which gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies — User-Agent strings, filenames, and command lines — flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet.)
+The agents invoke Claude with `--dangerously-skip-permissions`, which gives them unrestricted shell access on their respective host. Attacker-controlled fields from Wazuh alert bodies, User-Agent strings, filenames, and command lines all flow into agent prompts **without sanitization**. A crafted log entry could in theory influence an agent that is able to run shell commands. (This has not been tested yet.)
 
 This is a known architectural weakness in the design and is **not yet mitigated**. Do not run this against real or untrusted traffic. Treat it as a lab exercise in an isolated, segmented network. If you wish to extend it, adding external input validation should be your first concern so you aren't relying on the model to police itself.
 
 ### The messaging bus is a second, more direct injection path
 
-The `/send` endpoint on the Flask messaging platform (`soc-messaging/soc-messaging-platform-main.py`) accepts a `sender`, `recipient`, and `body` with **no authentication**. Anything that can reach port 5000 can post a message into any agent's inbox while claiming to be any other agent — no alert has to be crafted or triaged first, it's a direct write into what an agent will read and act on next. This is arguably a shorter path to influencing agent behavior than the Wazuh alert-field path above, and it's equally **unmitigated**.
+The `/send` endpoint on the Flask messaging platform (`soc-messaging/soc-messaging-platform-main.py`) accepts a `sender`, `recipient`, and `body` with **no authentication**. Anything that can reach port 5000 can post a message into any agent's inbox while claiming to be any other agent, no alert has to be crafted or triaged first, it's a direct write into what an agent will read and act on next. This is arguably a shorter path to influencing agent behavior than the Wazuh alert-field path above, and it's equally **unmitigated**.
 
 If you expose this port beyond `127.0.0.1` (including via Tailscale, per the comment in the code) for any reason, you're extending this same trust boundary. A minimal fix would be a shared-secret header checked on `/send`; that hasn't been implemented yet.
 
